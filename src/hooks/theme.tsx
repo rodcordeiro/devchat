@@ -1,5 +1,9 @@
 import React, { createContext, useContext } from 'react';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
+
+import useRedux from '@/hooks/useRedux';
+import { store } from '@/redux/store.redux';
+import { alterTheme } from '@/redux/actions.redux';
 import { dark } from '@/styles/dark';
 import { light } from '@/styles/light';
 
@@ -17,9 +21,12 @@ const AppContext = createContext<ITheme>({} as ITheme);
 export function ThemeHook({
   children,
 }: ThemeProviderProps): React.ReactElement {
-  const [theme, setTheme] = React.useState<DefaultTheme>(dark);
+  const { useAppSelector } = useRedux();
+  const { theme } = useAppSelector((state) => state.theme);
+  const { dispatch } = store;
+  
   const toggleTheme = () => {
-    setTheme(theme && theme.title === 'dark' ? light : dark);
+    dispatch(alterTheme(theme.title === 'dark' ? light : dark));
   };
 
   return (

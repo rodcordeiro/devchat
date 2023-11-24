@@ -6,7 +6,7 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
   },
   form: {
-    marginTop: 100,
+    marginTop: 80,
   },
   createAccount: {
     alignSelf: 'flex-end',

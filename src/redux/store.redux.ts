@@ -7,14 +7,14 @@ import {
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import createSecureStore from 'redux-persist-expo-securestore';
-import { Native as Sentry } from 'sentry-expo';
+// import { Native as Sentry } from 'sentry-expo';
 
 import authSlice from './slices/auth/auth.slice';
-import userSlice from './slices/user/user.slice';
+import themeSlice from './slices/theme/theme.slice';
 
 const reducer = combineReducers({
   auth: authSlice,
-  user: userSlice,
+  theme: themeSlice,
 });
 
 const storage = createSecureStore();
@@ -28,12 +28,12 @@ const persistedReducer = persistReducer(
   reducer,
 );
 
-const sentryReduxEnhancer = Sentry.createReduxEnhancer({});
+// const sentryReduxEnhancer = Sentry.createReduxEnhancer({});
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: [thunk],
-  enhancers: [sentryReduxEnhancer],
+  // enhancers: [sentryReduxEnhancer],
 });
 
 export const persistedStore = persistStore(store);
