@@ -8,6 +8,7 @@ import { useTheme } from '@/hooks/theme';
 import LoginScreen from '@/features/Login';
 import RegisterScreen from '@/features/Register';
 import HomeScreen from '@/features/Home';
+import ChatScreen from '@/features/Chat';
 import Icon from '@/components/tools/Icon';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,12 +43,14 @@ export const Navigator = () => {
             headerShown: true,
             headerTitle: '',
             headerTransparent: true,
+            
             headerLeft: () => <></>,
             headerRight: () => (
               <Icon name="settings" action={() => console.log('settings')} />
             ),
           }}
         />
+        <Stack.Screen name="Chat" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

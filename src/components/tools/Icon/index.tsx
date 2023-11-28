@@ -6,14 +6,15 @@ import { useTheme } from '@/hooks/theme';
 type Props = {
   name: string;
   action?: () => void;
+  color?: string;
 };
-const Icon = ({ name, action }: Props) => {
+const Icon = ({ name, action, color }: Props) => {
   const { theme } = useTheme();
   return (
     <Pressable onPress={() => (action ? action() : null)}>
       <Feather
         name={name as any}
-        color={theme.colors.primary}
+        color={color || theme.colors.primary}
         size={24}
         style={{ padding: 10 }}
       />

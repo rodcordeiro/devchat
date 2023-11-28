@@ -5,6 +5,9 @@ declare global {
     Login: undefined;
     Register: undefined;
     Home: undefined;
+    Chat: {
+      id: string;
+    };
   };
 
   type ScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<

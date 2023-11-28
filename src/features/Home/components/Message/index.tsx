@@ -2,10 +2,12 @@ import { View, Image, Text, Pressable, Dimensions } from 'react-native';
 
 import { Conversation } from '../../types/home.types';
 import { useTheme } from '@/hooks/theme';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 export const Message = (props: Conversation) => {
   const { theme } = useTheme();
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <Pressable
       style={{
@@ -24,6 +26,7 @@ export const Message = (props: Conversation) => {
 
         elevation: 5,
       }}
+      onPress={() => navigate('Chat', { id: props.id })}
     >
       <View>
         <Image
@@ -98,7 +101,7 @@ export const Message = (props: Conversation) => {
           lineBreakMode="tail"
           numberOfLines={1}
         >
-          {props.lastMessage}
+          {props.lastMessage.message}
         </Text>
       </View>
     </Pressable>
